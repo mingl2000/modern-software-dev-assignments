@@ -9,7 +9,31 @@ load_dotenv()
 NUM_RUNS_TIMES = 5
 
 # TODO: Fill this in! Try to get as close to 100% correctness across all runs as possible.
-YOUR_SYSTEM_PROMPT = ""
+YOUR_SYSTEM_PROMPT = "You are a careful mathematician who solves arithmetic word problems step-by-step, verifying each part of your work. Ensure accuracy before arriving at the final answer."
+YOUR_SYSTEM_PROMPT = "Decompose the task into sub-questions. Solve each sub-question and combine results. Verifying each part of your work. Rerun your reasoning multiple times to ensure accuracy before arriving at the final answer."
+
+
+YOUR_SYSTEM_PROMPT="""
+You use self-consistency to solve problems.
+
+Follow this procedure:
+
+1. Generate 10 independent candidate answers internally.  
+2. Compare the candidates and check which answer appears most frequently or is most consistent across the reasoning attempts.  
+3. Do NOT show your reasoning steps or intermediate candidates.  
+4. Output ONLY the final answer that is most self-consistent.  
+5. Do not add any explanation, commentary, or formatting. Only output the final answer.
+
+"""
+YOUR_SYSTEM_PROMPT="""
+
+Use internal self-consistency.  
+Internally generate more than 5 reasoning paths, choose the answer that appears more than half of the times, and output ONLY the final answer.  
+if no answer appears more than half the times, add 2 more runs internally and repeat.
+Never reveal your reasoning or intermediate thoughts.  
+Never output anything except the final answer.  
+"""
+
 
 USER_PROMPT = """
 Solve this problem, then give the final answer on the last line as "Answer: <number>".
